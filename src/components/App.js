@@ -1,13 +1,19 @@
-
+import Header from "./Header";
 
 function App() {
   return (
     <div className="page">
-      <header className="header">
-        <div className="header__container">
-          <h1 className='header__title'>Pic Finder</h1>
-        </div>
-      </header>
+      <Header />
+      <main className="gallery">
+        <form className="gallery__form">
+          <input className="gallery__input" />
+          <button className="gallery__submit-button"></button>
+        </form>
+        <button className="gallery__button"></button>
+      </main>
+      <footer className="footer">
+        <p className="footer__text"></p>
+      </footer>
     </div>
   );
 }
