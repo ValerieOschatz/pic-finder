@@ -1,0 +1,15 @@
+.gallery__button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 10px;
+  color: darkslategrey;
+  transition: color .3s linear;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.gallery__button:hover {
+  color: cadetblue;
+}

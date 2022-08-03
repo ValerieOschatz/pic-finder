@@ -1,0 +1,12 @@
+.gallery__input {
+  flex: 1;
+  font-size: 18px;
+  line-height: 1.1;
+  background-color: #fff;
+  border: 2px solid cadetblue;
+  color: rgb(24, 24, 24);
+}
+
+.gallery__input:focus {
+  outline: none;
+}
