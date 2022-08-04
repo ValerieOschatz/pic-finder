@@ -1,15 +1,17 @@
-function Main() {
+import Form from "./Form";
+import Card from "./Card";
+
+function Main({ cards, onSearch }) {
   return (
     <main className="gallery">
-      <form className="gallery__form" name="search">
-        <input
-          className="gallery__input"
-          id="name"
-          name="name"
-          type="text"
-        />
-        <button className="gallery__submit-button" type="submit">Search</button>
-      </form>
+      <Form onSearch={onSearch} />
+      <ul className="gallery__card-list">
+        {cards.map((card) => (
+          <Card
+            key={card.id}
+            card={card} />
+        ))}
+      </ul>
       <button className="gallery__button" type="button">Show random pictures</button>
     </main>
   );
