@@ -1,0 +1,20 @@
+.gallery__image {
+  width: 360px;
+  height: 360px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transition: box-shadow .3s ease-out;
+  cursor: pointer;
+}
+
+.gallery__image:hover {
+  box-shadow: 5px 5px 5px gray;
+}
+
+@media screen and (max-width: 524px) {
+  .gallery__image {
+    width: 300px;
+    height: 300px;
+  }
+}

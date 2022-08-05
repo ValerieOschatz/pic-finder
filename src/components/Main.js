@@ -12,7 +12,7 @@ function Main({ cards, onSearch }) {
             card={card} />
         ))}
       </ul>
-      <button className="gallery__button" type="button">Show random pictures</button>
+      <button className="gallery__button" type="button">Show random picture</button>
     </main>
   );
 }
