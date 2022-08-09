@@ -16,3 +16,9 @@
 
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__text/footer__text.css);
+
+@import url(./blocks/cardInfo/cardInfo.css);
+@import url(./blocks/cardInfo/__link/cardInfo__link.css);
+@import url(./blocks/cardInfo/__figure/cardInfo__figure.css);
+@import url(./blocks/cardInfo/__image/cardInfo__image.css);
+@import url(./blocks/cardInfo/__text/cardInfo__text.css);

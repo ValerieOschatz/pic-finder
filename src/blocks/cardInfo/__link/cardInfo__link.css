@@ -1,0 +1,18 @@
+.cardInfo__link {
+  text-decoration: none;
+  color: darkslategrey;
+  transition: color .3s linear;
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.cardInfo__link:hover {
+  color: cadetblue;
+}
+
+@media screen and (max-width: 767px) {
+  .cardInfo__link {
+    font-size: 18px;
+  }
+}

@@ -23,7 +23,7 @@ export const getRandomPicture = () => {
   return fetch(`${BASE_URL}/photos/random`, {
     method: 'GET',
     headers: {
-      authorization: ACCESS_KEY,
+      Authorization: `Client-ID ${ACCESS_KEY}`,
       'Content-Type': 'application/json'
     }
   })

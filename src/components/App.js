@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -10,12 +10,23 @@ import { getPictures, getRandomPicture } from "../utils/api"
 function App() {
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
+  const history = useHistory();
 
   function handleSearch(data) {
     getPictures(data)
     .then((cardsData) => {
       setCards(cardsData.results);
-      console.log(cardsData);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  function handleGetRandom() {
+    getRandomPicture()
+    .then((cardData) => {
+      setSelectedCard(cardData);
+      history.push('/card');
     })
     .catch((err) => {
       console.log(err);
@@ -34,7 +45,8 @@ function App() {
           <Main
             cards={cards}
             onSearch={handleSearch}
-            onCardClick={handleCardClick} />
+            onCardClick={handleCardClick}
+            onRandomClick={handleGetRandom} />
           <Footer />
         </Route>
         <ProtectedRoute

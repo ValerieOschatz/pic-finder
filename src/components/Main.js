@@ -1,7 +1,7 @@
 import Form from "./Form";
 import Card from "./Card";
 
-function Main({ cards, onSearch, onCardClick }) {
+function Main({ cards, onSearch, onCardClick, onRandomClick }) {
   return (
     <main className="gallery">
       <Form onSearch={onSearch} />
@@ -13,7 +13,7 @@ function Main({ cards, onSearch, onCardClick }) {
             onCardClick={onCardClick} />
         ))}
       </ul>
-      <button className="gallery__button" type="button">Show random picture</button>
+      <button className="gallery__button" type="button" onClick={onRandomClick}>Show random picture</button>
     </main>
   );
 }
