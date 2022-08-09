@@ -1,15 +1,17 @@
 import { useState } from "react";
+import { Route, Switch } from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
+import CardInfo from "./CardInfo";
+import ProtectedRoute from "./ProtectedRoute";
 import { getPictures, getRandomPicture } from "../utils/api"
 
 function App() {
   const [cards, setCards] = useState([]);
-  const [isLoading, setLoading] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   function handleSearch(data) {
-    setLoading(true);
     getPictures(data)
     .then((cardsData) => {
       setCards(cardsData.results);
@@ -18,18 +20,28 @@ function App() {
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => {
-      setLoading(false);
-    })
+  }
+
+  function handleCardClick(card) {
+    setSelectedCard(card);
   }
 
   return (
     <div className="page">
-      <Header />
-      <Main
-        cards={cards}
-        onSearch={handleSearch} />
-      <Footer />
+      <Switch>
+        <Route exact path="/">
+          <Header />
+          <Main
+            cards={cards}
+            onSearch={handleSearch}
+            onCardClick={handleCardClick} />
+          <Footer />
+        </Route>
+        <ProtectedRoute
+          path="/card"
+          selectedCard={selectedCard}
+          component={CardInfo} />
+      </Switch>
     </div>
   );
 }
