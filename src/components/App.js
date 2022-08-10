@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -37,6 +37,10 @@ function App() {
     setSelectedCard(card);
   }
 
+  function handleBack() {
+    setSelectedCard(null);
+  }
+
   return (
     <div className="page">
       <Switch>
@@ -49,10 +53,16 @@ function App() {
             onRandomClick={handleGetRandom} />
           <Footer />
         </Route>
+
         <ProtectedRoute
           path="/card"
           selectedCard={selectedCard}
-          component={CardInfo} />
+          component={CardInfo}
+          onBack={handleBack} />
+
+        <Route>
+          {!selectedCard && <Redirect to="/" />}
+        </Route>
       </Switch>
     </div>
   );
