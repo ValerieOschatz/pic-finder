@@ -1,26 +1,14 @@
-import { useState } from "react";
-
-function Form({ onSearch }) {
-  const [query, setQuery] = useState('');
-
-  function handleChangeQuery(e) {
-    setQuery(e.target.value);
-  }
-
-  function handleSubmit(e){
-    e.preventDefault();
-    onSearch(query);
-  }
+function Form({ onSubmit, query, onChangeQuery }) {
 
   return (
-    <form className="gallery__form" name="search" onSubmit={handleSubmit}>
+    <form className="gallery__form" name="search" onSubmit={onSubmit}>
       <input
         className="gallery__input"
         id="name"
         name="name"
         type="text"
         value={query || ''}
-        onChange={handleChangeQuery}
+        onChange={onChangeQuery}
       />
       <button className="gallery__submit-button" type="submit">Search</button>
     </form>

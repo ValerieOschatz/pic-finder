@@ -1,10 +1,14 @@
 import Form from "./Form";
 import Card from "./Card";
+import Pagination from "./Pagination";
 
-function Main({ cards, onSearch, onCardClick, onRandomClick }) {
+function Main({ cards, onSubmit, onCardClick, onRandomClick, query, onChangeQuery, onNextPage, onPreviousPage }) {
   return (
     <main className="gallery">
-      <Form onSearch={onSearch} />
+      <Form
+        onSubmit={onSubmit}
+        query={query}
+        onChangeQuery={onChangeQuery} />
       <ul className="gallery__card-list">
         {cards.map((card) => (
           <Card
@@ -13,6 +17,10 @@ function Main({ cards, onSearch, onCardClick, onRandomClick }) {
             onCardClick={onCardClick} />
         ))}
       </ul>
+      {cards.length > 0 &&
+      <Pagination
+        onNextPage={onNextPage}
+        onPreviousPage={onPreviousPage} />}
       <button className="gallery__button" type="button" onClick={onRandomClick}>Show random picture</button>
     </main>
   );

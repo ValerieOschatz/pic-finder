@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
@@ -8,6 +8,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import { getPictures, getRandomPicture } from "../utils/api"
 
 function App() {
+  const [query, setQuery] = useState(null);
+  const [page, setPage] = useState(1);
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
   const history = useHistory();
@@ -22,6 +24,14 @@ function App() {
     })
   }
 
+  useEffect(() => {
+    if (cards.length > 1) {
+      setPage(page);
+      console.log(page);
+      handleSearch({ page, query });
+    }
+  }, [cards.length, page ]);
+
   function handleGetRandom() {
     getRandomPicture()
     .then((cardData) => {
@@ -31,6 +41,26 @@ function App() {
     .catch((err) => {
       console.log(err);
     })
+  }
+
+  function handleSubmit(e){
+    e.preventDefault();
+    setPage(1);
+    handleSearch({ page, query });
+  }
+
+  function handleNextPage() {
+    setPage(page + 1);
+  }
+
+  function handlePreviousPage() {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  }
+
+  function handleChangeQuery(e) {
+    setQuery(e.target.value);
   }
 
   function handleCardClick(card) {
@@ -48,9 +78,14 @@ function App() {
           <Header />
           <Main
             cards={cards}
-            onSearch={handleSearch}
             onCardClick={handleCardClick}
-            onRandomClick={handleGetRandom} />
+            onRandomClick={handleGetRandom}
+            query={query}
+            onChangeQuery={handleChangeQuery}
+            onSubmit={handleSubmit}
+            onNextPage={handleNextPage}
+            onPreviousPage={handlePreviousPage}
+             />
           <Footer />
         </Route>
 

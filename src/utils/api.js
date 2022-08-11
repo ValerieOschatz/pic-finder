@@ -8,8 +8,8 @@ function checkServerRes(res) {
   return Promise.reject(`Ошибка: ${res.status}`);
 }
 
-export const getPictures = (query) => {
-  return fetch(`${BASE_URL}/search/photos?query=${query}`, {
+export const getPictures = ( {page, query }) => {
+  return fetch(`${BASE_URL}/search/photos?page=${page}&query=${query}`, {
     method: 'GET',
     headers: {
       Authorization: `Client-ID ${ACCESS_KEY}`,
