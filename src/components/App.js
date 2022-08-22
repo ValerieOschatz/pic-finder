@@ -8,55 +8,62 @@ import ProtectedRoute from "./ProtectedRoute";
 import { getPictures, getRandomPicture } from "../utils/api"
 
 function App() {
+  const [cards, setCards] = useState([]);
   const [query, setQuery] = useState(null);
   const [page, setPage] = useState(1);
-  const [cards, setCards] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [isfetching, setFetching] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const history = useHistory();
 
-  function handleSearch(data) {
-    getPictures(data)
-    .then((cardsData) => {
-      setCards(cardsData.results);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+  useEffect(() => {
+    document.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+
+  function handleScroll(e) {
+    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) {
+      setFetching(true);
+    }
   }
 
   useEffect(() => {
-    if (cards.length > 1) {
-      setPage(page);
-      console.log(page);
-      handleSearch({ page, query });
+    if (isfetching && cards.length < totalPages) {
+      getPictures({ page, query })
+      .then((cardsData) => {
+        setPage(prevValue => prevValue + 1);
+        setCards([...cards, ...cardsData.results]);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setFetching(false);
+      })
     }
-  }, [cards.length, page ]);
+  }, [isfetching, cards, cards.length, totalPages, page, query]);
 
-  function handleGetRandom() {
-    getRandomPicture()
-    .then((cardData) => {
-      setSelectedCard(cardData);
-      history.push('/card');
+  useEffect(() => {
+    setPage(1);
+    setCards([]);
+    setFetching(false);
+  }, [query]);
+
+  function handleSubmit(e){
+    e.preventDefault();
+
+    getPictures({ page, query })
+    .then((cardsData) => {
+      setCards([...cardsData.results]);
+      setPage(prevValue => prevValue + 1);
+      setTotalPages(cardsData.total_pages);
     })
     .catch((err) => {
       console.log(err);
     })
-  }
-
-  function handleSubmit(e){
-    e.preventDefault();
-    setPage(1);
-    handleSearch({ page, query });
-  }
-
-  function handleNextPage() {
-    setPage(page + 1);
-  }
-
-  function handlePreviousPage() {
-    if (page > 1) {
-      setPage(page - 1);
-    }
   }
 
   function handleChangeQuery(e) {
@@ -71,6 +78,17 @@ function App() {
     setSelectedCard(null);
   }
 
+  function handleGetRandom() {
+    getRandomPicture()
+    .then((cardData) => {
+      setSelectedCard(cardData);
+      history.push('/card');
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   return (
     <div className="page">
       <Switch>
@@ -82,10 +100,7 @@ function App() {
             onRandomClick={handleGetRandom}
             query={query}
             onChangeQuery={handleChangeQuery}
-            onSubmit={handleSubmit}
-            onNextPage={handleNextPage}
-            onPreviousPage={handlePreviousPage}
-             />
+            onSubmit={handleSubmit} />
           <Footer />
         </Route>
 

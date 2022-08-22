@@ -9,6 +9,7 @@ function Form({ onSubmit, query, onChangeQuery }) {
         type="text"
         value={query || ''}
         onChange={onChangeQuery}
+        required
       />
       <button className="gallery__submit-button" type="submit">Search</button>
     </form>

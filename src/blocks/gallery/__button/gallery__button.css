@@ -3,11 +3,11 @@
   background-color: transparent;
   cursor: pointer;
   padding: 0;
-  margin-top: auto;
   color: darkslategrey;
   transition: color .3s linear;
   font-size: 20px;
   line-height: 1.2;
+  margin-top: 20px;
 }
 
 .gallery__button:hover {
