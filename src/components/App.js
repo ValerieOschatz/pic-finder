@@ -25,7 +25,7 @@ function App() {
   }, []);
 
   function handleScroll(e) {
-    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) {
+    if (e.target.documentElement.scrollTop + e.target.documentElement.clientHeight >= e.target.documentElement.scrollHeight) {
       setFetching(true);
     }
   }
@@ -47,8 +47,8 @@ function App() {
   }, [isfetching, cards, cards.length, totalPages, page, query]);
 
   useEffect(() => {
-    setPage(1);
     setCards([]);
+    setPage(1);
     setFetching(false);
   }, [query]);
 
