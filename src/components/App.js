@@ -49,7 +49,7 @@ function App() {
   useEffect(() => {
     setCards([]);
     setPage(1);
-    setFetching(false);
+    // setFetching(false);
   }, [query]);
 
   function handleSubmit(e){
