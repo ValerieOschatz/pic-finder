@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
-import Header from "./Header";
+import Header from "./Header.tsx";
 import Main from "./Main";
-import Footer from "./Footer";
+import Footer from "./Footer.tsx";
 import CardInfo from "./CardInfo";
 import ProtectedRoute from "./ProtectedRoute";
 import { getPictures, getRandomPicture } from "../utils/api"
@@ -47,7 +47,6 @@ function App() {
   }, [isfetching, cards, cards.length, totalPages, page, query]);
 
   useEffect(() => {
-    setCards([]);
     setPage(1);
     setFetching(false);
   }, [query]);

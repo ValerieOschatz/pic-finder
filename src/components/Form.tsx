@@ -1,4 +1,12 @@
-function Form({ onSubmit, query, onChangeQuery }) {
+import React from 'react';
+
+type FormProps = {
+  query: string,
+  onSubmit: () => void,
+  onChangeQuery: () => void,
+}
+
+const Form: React.FC<FormProps> = ({ onSubmit, query, onChangeQuery }) => {
 
   return (
     <form className="gallery__form" name="search" onSubmit={onSubmit}>

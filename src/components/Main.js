@@ -1,4 +1,4 @@
-import Form from "./Form";
+import Form from "./Form.tsx";
 import Card from "./Card";
 
 function Main({ cards, onSubmit, onCardClick, onRandomClick, query, onChangeQuery }) {
