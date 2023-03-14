@@ -7,7 +7,7 @@
 
 ### Стек
 
-* JS
+* Typescript
 * HTML
 * CSS
 
