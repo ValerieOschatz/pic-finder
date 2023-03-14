@@ -1,12 +1,8 @@
 import React from 'react';
+import { FormProps } from '../utils/types';
 
-type FormProps = {
-  query: string,
-  onSubmit: () => void,
-  onChangeQuery: () => void,
-}
-
-const Form: React.FC<FormProps> = ({ onSubmit, query, onChangeQuery }) => {
+const Form: React.FC<FormProps> = (props) => {
+  const { query, onSubmit, onChangeQuery } = props;
 
   return (
     <form className="gallery__form" name="search" onSubmit={onSubmit}>

@@ -1,7 +1,15 @@
-import Form from "./Form.tsx";
-import Card from "./Card";
+import React from 'react';
 
-function Main({ cards, onSubmit, onCardClick, onRandomClick, query, onChangeQuery }) {
+// @ts-ignore
+import Form from "./Form.tsx";
+// @ts-ignore
+import Card from "./Card.tsx";
+
+import { MainProps } from '../utils/types';
+
+const Main: React.FC<MainProps> = (props) => {
+  const { cards, onSubmit, onCardClick, onRandomClick, query, onChangeQuery } = props;
+
   return (
     <main className="gallery">
       <Form
@@ -14,6 +22,8 @@ function Main({ cards, onSubmit, onCardClick, onRandomClick, query, onChangeQuer
           <Card
             key={card.id}
             card={card}
+            link={card.urls.small}
+            alt={card.alt_description}
             onCardClick={onCardClick} />
         ))}
       </ul>

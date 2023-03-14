@@ -1,19 +1,27 @@
+import React from 'react';
 import { useEffect, useState } from "react";
-import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
-import Header from "./Header.tsx";
-import Main from "./Main";
-import Footer from "./Footer.tsx";
-import CardInfo from "./CardInfo";
-import ProtectedRoute from "./ProtectedRoute";
-import { getPictures, getRandomPicture } from "../utils/api"
+import { Route, Switch, useHistory } from 'react-router-dom';
 
-function App() {
-  const [cards, setCards] = useState([]);
-  const [query, setQuery] = useState(null);
+// @ts-ignore
+import Header from "./Header.tsx";
+// @ts-ignore
+import Main from "./Main.tsx";
+// @ts-ignore
+import Footer from "./Footer.tsx";
+// @ts-ignore
+import CardInfo from "./CardInfo.tsx";
+// @ts-ignore
+import { getPictures, getRandomPicture } from "../utils/api.ts"
+
+import { Card } from '../utils/types';
+
+const App: React.FC = () => {
+  const [cards, setCards] = useState<Array<any>>([]);
+  const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [isfetching, setFetching] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCard, setSelectedCard] = useState<any | null>(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -24,7 +32,7 @@ function App() {
     }
   }, []);
 
-  function handleScroll(e) {
+  function handleScroll(e: any) {
     if (e.target.documentElement.scrollTop + e.target.documentElement.clientHeight >= e.target.documentElement.scrollHeight) {
       setFetching(true);
     }
@@ -51,7 +59,7 @@ function App() {
     setFetching(false);
   }, [query]);
 
-  function handleSubmit(e){
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
     getPictures({ page, query })
@@ -65,19 +73,20 @@ function App() {
     })
   }
 
-  function handleChangeQuery(e) {
+  const handleChangeQuery: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setQuery(e.target.value);
   }
 
-  function handleCardClick(card) {
+  const handleCardClick = (card: Card) => {
     setSelectedCard(card);
+    console.log(card);
   }
 
-  function handleBack() {
+  const handleBack = () => {
     setSelectedCard(null);
   }
 
-  function handleGetRandom() {
+  const handleGetRandom = () => {
     getRandomPicture()
     .then((cardData) => {
       setSelectedCard(cardData);
@@ -103,14 +112,12 @@ function App() {
           <Footer />
         </Route>
 
-        <ProtectedRoute
-          path="/card"
-          selectedCard={selectedCard}
-          component={CardInfo}
-          onBack={handleBack} />
-
-        <Route>
-          {!selectedCard && <Redirect to="/" />}
+        <Route path="/card">
+          <CardInfo
+            link={selectedCard?.urls.regular}
+            alt={selectedCard?.alt_description}
+            onBack={handleBack}
+          />
         </Route>
       </Switch>
     </div>

@@ -1,7 +1,7 @@
 const BASE_URL = 'https://api.unsplash.com';
 const ACCESS_KEY = 'gzwDDFQq4_W-6Ms5aAgkiV0d7CdVYFVwItKEGYIcSkU';
 
-function checkServerRes(res) {
+function checkServerRes(res: any) {
   if (res.ok) {
     return res.json();
   }
