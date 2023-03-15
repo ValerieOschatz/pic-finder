@@ -1,16 +1,23 @@
 interface Card {
+  urls: {
+    regular: string;
+    small: string;
+  };
+  alt_description: string;
+  id: string;
+}
+
+interface CardsResponse {
+  results: Card[];
+  total_pages: number;
+}
+
+interface CardProps {
+  card: Card;
   link: string;
   alt: string;
-}
-
-interface CardProps extends Card {
-  card: Card;
-  onCardClick: (card: Card) => void;
-}
-
-
-interface CardInfoProps extends Card {
-  onBack: () => void;
+  onCardClick?: (card: Card) => void;
+  onBack?: () => void;
 }
 
 interface FormProps {
@@ -20,9 +27,9 @@ interface FormProps {
 }
 
 interface MainProps extends FormProps {
-  cards: Array<any>;
+  cards: Card[];
   onCardClick: (card: Card) => void;
   onRandomClick: () => void;
 }
 
-export { FormProps, CardProps, CardInfoProps, MainProps, Card };
+export { FormProps, CardProps, MainProps, Card, CardsResponse };

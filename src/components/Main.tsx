@@ -18,12 +18,12 @@ const Main: React.FC<MainProps> = (props) => {
         onChangeQuery={onChangeQuery} />
       <button className="gallery__button" type="button" onClick={onRandomClick}>Show random picture</button>
       <ul className="gallery__card-list">
-        {cards.map((card) => (
+        {cards.map(({ urls, alt_description, id }) => (
           <Card
-            key={card.id}
-            card={card}
-            link={card.urls.small}
-            alt={card.alt_description}
+            key={id}
+            card={{ urls, alt_description, id }}
+            link={urls.small}
+            alt={alt_description}
             onCardClick={onCardClick} />
         ))}
       </ul>
