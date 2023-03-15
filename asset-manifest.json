@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/pic-finder/static/css/main.48de8f43.css",
-    "main.js": "/pic-finder/static/js/main.959726be.js",
+    "main.css": "/pic-finder/static/css/main.57a07491.css",
+    "main.js": "/pic-finder/static/js/main.da33ad51.js",
     "static/media/steve-johnson-_YdR0vD5Gn4-unsplash.jpg": "/pic-finder/static/media/steve-johnson-_YdR0vD5Gn4-unsplash.cf4d1f793e0820074d71.jpg",
     "static/media/OpenSans-Medium.woff": "/pic-finder/static/media/OpenSans-Medium.7bae829890a59c131bbc.woff",
     "static/media/OpenSans-Regular.woff": "/pic-finder/static/media/OpenSans-Regular.a4e86ec8ad6e1cf75844.woff",
@@ -12,11 +12,11 @@
     "static/media/OpenSans-ExtraBold.woff2": "/pic-finder/static/media/OpenSans-ExtraBold.61ebf383013969774d0c.woff2",
     "static/media/OpenSans-Bold.woff2": "/pic-finder/static/media/OpenSans-Bold.9ae63c46a17832eadf7d.woff2",
     "index.html": "/pic-finder/index.html",
-    "main.48de8f43.css.map": "/pic-finder/static/css/main.48de8f43.css.map",
-    "main.959726be.js.map": "/pic-finder/static/js/main.959726be.js.map"
+    "main.57a07491.css.map": "/pic-finder/static/css/main.57a07491.css.map",
+    "main.da33ad51.js.map": "/pic-finder/static/js/main.da33ad51.js.map"
   },
   "entrypoints": [
-    "static/css/main.48de8f43.css",
-    "static/js/main.959726be.js"
+    "static/css/main.57a07491.css",
+    "static/js/main.da33ad51.js"
   ]
 }
