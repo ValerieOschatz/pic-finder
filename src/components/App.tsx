@@ -1,17 +1,11 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 
-// @ts-ignore
 import Header from "./Header.tsx";
-// @ts-ignore
 import Main from "./Main.tsx";
-// @ts-ignore
 import Footer from "./Footer.tsx";
-// @ts-ignore
 import CardInfo from "./CardInfo.tsx";
-// @ts-ignore
 import { getPictures, getRandomPicture } from "../utils/api.ts"
-
 import { Card, CardsResponse } from '../utils/types';
 
 const App: React.FC = () => {
